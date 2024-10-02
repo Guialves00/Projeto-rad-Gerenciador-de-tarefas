@@ -1,0 +1,28 @@
+Questão 1) A Linguagem de programação Python permite a inserção em massa de várias linhas em uma
+tabela de banco de dados usando uma única consulta SQL. Pode-se fazer isso usando uma consulta
+parametrizada e o comando: 
+
+a. insertmany()
+b. execute()
+c. inserirmuitos()
+d. executemany()
+e. writeln() 
+
+Resposta: letra D. As demais alternativas estão ERRADAS em razão de:
+Método executemany (). Este método prepara uma operação de banco de dados (consulta ou comando) e
+a executa em todas as sequências de parâmetros ou mapeamentos encontrados na sequência
+seq_of_params. 
+
+Questão 2) Após a execução de comandos de manipulação tem-se que realizar a finalização da transação
+para isso usamos o comando: 
+
+a. commit()
+b. rollback()
+c. persist()
+d. execute()
+e. run() 
+
+Resposta:a letra A. As demais alternativas estão ERRADAS em razão de:
+Este método envia uma instrução ao servidor, confirmando a transação atual. Como, por padrão, o
+Conector / Python não se auto comita, é importante chamar esse método após cada transação que
+modifica os dados para tabelas que usam mecanismos de armazenamento transacional.
