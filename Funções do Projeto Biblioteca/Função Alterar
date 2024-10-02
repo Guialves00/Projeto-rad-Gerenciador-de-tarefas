@@ -1,0 +1,42 @@
+def alterar_livro(id):
+    try:
+        conexao = conector.connect('biblioteca.db')
+        cursor = conexao.cursor()
+
+        # Verifica se o livro existe
+        cursor.execute('SELECT * FROM Livros WHERE id = ?;', (id,))
+        livro = cursor.fetchone()
+        
+        if livro is None:
+            print('Nenhum livro encontrado com esse ID.')
+            return
+
+        print(f'Livro encontrado: ID: {livro[0]}, Título: {livro[1]}, Autor: {livro[2]}, Ano: {livro[3]}')
+        
+        # Solicita novos dados
+        novo_titulo = input('Novo Título (deixe em branco para manter): ') or livro[1]
+        novo_autor = input('Novo Autor (deixe em branco para manter): ') or livro[2]
+        novo_ano = input('Novo Ano (deixe em branco para manter): ')
+        
+        # Se o ano estiver vazio, mantém o valor atual
+        if novo_ano.strip() == '':
+            novo_ano = livro[3]
+        else:
+            novo_ano = int(novo_ano)
+        
+        # Atualiza os dados
+        cursor.execute('UPDATE Livros SET titulo = ?, autor = ?, ano = ? WHERE id = ?;', 
+                       (novo_titulo, novo_autor, novo_ano, id))
+        conexao.commit()
+        
+        if cursor.rowcount > 0:
+            print('Livro alterado com sucesso.')
+        else:
+            print('Erro ao alterar livro.')
+
+    except conector.DatabaseError as err:
+        print('Erro ao alterar livro:', err)
+    finally:
+        if conexao:
+            cursor.close()
+            conexao.close()
