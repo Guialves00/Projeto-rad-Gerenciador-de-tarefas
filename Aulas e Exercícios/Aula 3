@@ -1,0 +1,30 @@
+Questão 1) Existem dois modos de se trabalhar com arquivos, onde um é adequado para trabalhar
+com arquivos que contêm imagem, som e vídeo, dentre outros, o segundo modo pode ser aberto
+em qualquer editor básico e ser editado, esses modos são:
+
+a) Sequencial e Texto
+b) Binário e Texto
+c) Multimidia e Binário
+d) Texto e Stream
+e) Multimidia e Stream
+
+Resposta:é a letra B. Existem dois modos de se trabalhar com arquivos: o modo texto e o modo binário. Este segundo modo é
+adequado para trabalhar com arquivos que contêm imagens, sons, vídeos, arquivos compactados, entre
+outros tipos de conteúdo. Por outro lado, os arquivos texto podem ser abertos e editados com qualquer
+editor de texto básico, como o Bloco de Notas. Essa facilidade permite que os arquivos gerados com
+Python possam ser verificados no editor e arquivos digitados em um editor podem ser processados
+utilizando programas escritos em Python. Desse modo, este capítulo se concentra no trabalho com
+arquivos texto. 
+
+Questão 2) O Python conta com recursos voltados à gravação e à leitura de arquivos, sejam
+eles binários ou texto. Nos arquivos do tipo texto a primeira providência é abrir o arquivo
+utilizando o método:
+
+a) open("nome_arquivo",w)
+b) abrir("nome_arquivo",r)
+c) read("nome_arquivo",+wr)
+d) get("nome_arquivo",w)
+e) readline("nome_arquivo",r)
+
+Resposta:letra A. Para a leitura de arquivos o Python utiliza a função open, que terá o caminho / nome do arquivo e um
+segundo argumento informando o modo de abertura do arquivo. 
