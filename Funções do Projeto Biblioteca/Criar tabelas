@@ -1,0 +1,41 @@
+import sqlite3
+
+# Conectar ao banco de dados (ou criar se não existir)
+conn = sqlite3.connect('biblioteca.db')
+cursor = conn.cursor()
+
+# Criar tabela de livros
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS livros (
+    id INTEGER PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    autor TEXT NOT NULL,
+    ano INTEGER
+)
+''')
+
+# Criar tabela de usuários
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+)
+''')
+
+# Criar tabela de empréstimos
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS emprestimos (
+    id INTEGER PRIMARY KEY,
+    livro_id INTEGER,
+    usuario_id INTEGER,
+    data_emprestimo DATE,
+    data_devolucao DATE,
+    FOREIGN KEY (livro_id) REFERENCES livros(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+)
+''')
+
+# Salvar mudanças e fechar a conexão
+conn.commit()
+conn.close()
