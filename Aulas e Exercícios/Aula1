@@ -1,1 +1,30 @@
+Questão 1)Assistente Técnico em Regulação de Serviços Públicos Provas:
+Uma das técnicas de licitação de requisitos tem foco na promoção da cooperação, de
+entendimento e de trabalho em grupo entre os desenvolvedores, gerando uma visão compartilhada
+do que o produto deve ser. Essa técnica é conhecida como :
 
+a) levantamento orientado a pontos de vista.
+b) brainstorming.
+c) JAD.
+d) entrevistas.
+e) workshops.
+
+Resposta:A alternativa CORRETA é a letra C. A Joint Application Development (JAD) é uma
+metodologia de desenvolvimento que tem como objetivo melhorar o entendimento do sistema ainda no
+início do projeto
+
+Questão 2)O modelo de processo de desenvolvimento de software incremental que enfatiza um ciclo de
+desenvolvimento extremamente curto, que compreende as fases de modelagem do negócio,
+modelagem dos dados, modelagem do processo, geração da aplicação, além de teste e entrega,
+e que o desenvolvimento é conseguido pelo uso de construção baseada em componentes, é
+conhecido como modelo:
+
+a) sequencial linear.
+b) RAD (Rapid Application Development).
+c) de prototipagem.
+d) espiral.
+e) de desenvolvimento concorrente.
+
+Resposta:A alternativa CORRETA é a letra B. A RAD, que em português é traduzido para Desenvolvimento Rápido de Software, é uma metodologia
+que tem como fundamento um processo iterativo e incremental que tem como objetivo fazer entregas no
+curto prazo para reduzir desvios da entrega final. 
