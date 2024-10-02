@@ -1,0 +1,48 @@
+import sqlite3
+
+def listar_usuarios():
+    try:
+        # Conectar ao banco de dados
+        conexao = sqlite3.connect('biblioteca.db')
+        cursor = conexao.cursor()
+
+        # Consultar todos os usuários
+        cursor.execute('SELECT * FROM usuarios')
+        usuarios = cursor.fetchall()
+
+        print("Lista de Usuários:")
+        for usuario in usuarios:
+            print(f"ID:{usuario[1]}, Nome: {usuario[1]}, Email: {usuario[1]}")
+
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+    finally:
+        # Fechar a conexão
+        if conexao:
+            conexao.close()
+
+def buscar_usuario_por_email(email):
+    try:
+        # Conectar ao banco de dados
+        conexao = sqlite3.connect('biblioteca.db')
+        cursor = conexao.cursor()
+
+        # Consultar o usuário pelo email
+        cursor.execute('SELECT * FROM usuarios WHERE email = ?', (email,))
+        usuario = cursor.fetchone()
+
+        if usuario:
+            print(f"Usuário Encontrado: ID: {usuario[1]}, Nome: {usuario[1]}, Email: {usuario[1]}")
+        else:
+            print("Usuário não encontrado.")
+
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+    finally:
+        # Fechar a conexão
+        if conexao:
+            conexao.close()
+
+# Exemplo de uso
+listar_usuarios()
+buscar_usuario_por_email('joao.silva@gmail.com')
