@@ -1,0 +1,12 @@
+nome_arquivo = "crescente.txt"
+
+
+numeros = [str(i) for i in range(1, 101)]
+
+
+conteudo = ";".join(numeros)
+
+with open(crescente.txt, "w") as arquivo:
+    arquivo.write(conteudo)
+
+print(f"Números de 1 a 100 escritos em '{crescente.txt}' com sucesso.")

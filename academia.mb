@@ -1,0 +1,33 @@
+import sqlite3 as conector  # apelido
+
+# função para criar a estrutura da tabela
+def criar_tabela():
+    conexao = conector.connect('academia.db')
+    cursor = conexao.cursor()
+    
+    # execução de comandos SQL
+    sql = "CREATE TABLE IF NOT EXISTS cadastro (codigo INTEGER, nome TEXT, idade INTEGER)"  # criar tabela
+    cursor.execute(sql)
+    
+    sql = "INSERT INTO cadastro (codigo, nome, idade) VALUES (1284, 'Pedro de Oliveira', 32)"  # inserir registros
+    cursor.execute(sql)
+    
+    sql = "INSERT INTO cadastro (codigo, nome, idade) VALUES (1309, 'Lúcia Machado', 37)"
+    cursor.execute(sql)
+    
+    # efetivação do comando
+    conexao.commit()
+    
+    # fechamento das conexões
+    cursor.close()
+    conexao.close()
+
+# executar função
+criar_tabela()
+print("Abra a pasta do programa e veja se o arquivo está lá")
+print("Fim do programa")
+
+
+
+
+

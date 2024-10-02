@@ -1,0 +1,3 @@
+import sqlite3  # Importando o módulo sqlite3
+
+banco = sqlite3.connect('Gerenciador de tarefas')

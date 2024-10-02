@@ -1,0 +1,12 @@
+[
+    {
+        "nome": "Guilherme Alves Esperidiao",
+        "email": "guilhermeosklen@hotmail.com",
+        "curso": "Ads"
+    },
+    {
+        "nome": "Vitor Hugo",
+        "email": "vitorhg.gmail.com",
+        "curso": "Ads"
+    }
+]

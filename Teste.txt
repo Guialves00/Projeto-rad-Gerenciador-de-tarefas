@@ -1,0 +1,195 @@
+import json
+import os
+
+# Nome do arquivo onde os dados dos alunos serão armazenados
+ARQUIVO_ALUNOS = "alunos.txt"
+
+def carregar_alunos():
+    """Carrega os alunos do arquivo, retornando uma lista de dicionários."""
+    if not os.path.exists(ARQUIVO_ALUNOS):
+        return []
+    with open(ARQUIVO_ALUNOS, "r") as arquivo:
+        return json.load(arquivo)
+
+def salvar_alunos(alunos):
+    """Salva a lista de alunos no arquivo."""
+    with open(ARQUIVO_ALUNOS, "w") as arquivo:
+        json.dump(alunos, arquivo, indent=4)
+
+def cadastrar_aluno():
+    """Cadastra um novo aluno."""
+    nome = input("Digite o nome do aluno: ")
+    email = input("Digite o email do aluno: ")
+    curso = input("Digite o curso do aluno: ")
+    
+    alunos = carregar_alunos()
+    alunos.append({"nome": nome, "email": email, "curso": curso})
+    salvar_alunos(alunos)
+    print(f"Aluno {nome} cadastrado com sucesso!")
+
+def listar_alunos():
+    """Lista todos os alunos cadastrados."""
+    alunos = carregar_alunos()
+    if not alunos:
+        print("Nenhum aluno cadastrado.")
+        return
+    print("Alunos cadastrados:")
+    for aluno in alunos:
+        print(f"Nome: {aluno['nome']}, Email: {aluno['email']}, Curso: {aluno['curso']}")
+
+def buscar_aluno(nome_busca):
+    """Busca um aluno pelo nome."""
+    alunos = carregar_alunos()
+    for aluno in alunos:
+        if aluno["nome"].lower() == nome_busca.lower():
+            print(f"Aluno encontrado: Nome: {aluno['nome']}, Email: {aluno['email']}, Curso: {aluno['curso']}")
+            return
+    print("Aluno não encontrado.")
+
+def main():
+    """Função principal que executa o menu do sistema."""
+    while True:
+        print("\nMenu:")
+        print("1. Cadastrar um novo aluno")
+        print("2. Listar alunos cadastrados")
+        print("3. Buscar um aluno pelo nome")
+        print("4. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            cadastrar_aluno()
+        elif opcao == "2":
+            listar_alunos()
+        elif opcao == "3":
+            nome = input("Digite o nome do aluno a buscar: ")
+            buscar_aluno(nome)
+        elif opcao == "4":
+            print("Saindo do sistema.")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+import json
+import os
+import re
+
+# Nome do arquivo onde os dados dos alunos serão armazenados
+ARQUIVO_ALUNOS = "alunos.txt"
+
+def carregar_alunos():
+    """Carrega os alunos do arquivo, retornando uma lista de dicionários."""
+    try:
+        with open(ARQUIVO_ALUNOS, "r") as arquivo:
+            return json.load(arquivo)
+    except FileNotFoundError:
+        print("Arquivo não encontrado. Um novo será criado ao cadastrar o primeiro aluno.")
+        return []
+    except Exception as e:
+        print(f"Erro ao carregar alunos: {e}")
+        return []
+
+def salvar_alunos(alunos):
+    """Salva a lista de alunos no arquivo."""
+    try:
+        with open(ARQUIVO_ALUNOS, "w") as arquivo:
+            json.dump(alunos, arquivo, indent=4)
+    except IOError:
+        print("Erro ao tentar escrever no arquivo. Verifique as permissões.")
+    except Exception as e:
+        print(f"Erro ao salvar alunos: {e}")
+
+def validar_nome(nome):
+    """Valida se o nome contém apenas letras e espaços."""
+    if not nome or not re.match("^[A-Za-záéíóúãâêîôûäëïöüÀÈÌÒÙ ]+$", nome):
+        raise ValueError("Nome inválido. O nome não pode estar vazio e deve conter apenas letras.")
+
+def validar_email(email):
+    """Valida se o email tem um formato básico válido."""
+    if not email or "@" not in email or "." not in email:
+        raise ValueError("Email inválido.")
+
+def validar_curso(curso):
+    """Valida se o curso não está vazio."""
+    if not curso:
+        raise ValueError("O campo curso não pode estar vazio.")
+
+def cadastrar_aluno():
+    """Cadastra um novo aluno."""
+    try:
+        nome = input("Digite o nome do aluno: ")
+        validar_nome(nome)
+        
+        email = input("Digite o email do aluno: ")
+        validar_email(email)
+        
+        curso = input("Digite o curso do aluno: ")
+        validar_curso(curso)
+        
+        alunos = carregar_alunos()
+        alunos.append({"nome": nome, "email": email, "curso": curso})
+        salvar_alunos(alunos)
+        print(f"Aluno {nome} cadastrado com sucesso!")
+    except ValueError as e:
+        print(e)
+
+def listar_alunos():
+    """Lista todos os alunos cadastrados."""
+    alunos = carregar_alunos()
+    if not alunos:
+        print("Nenhum aluno cadastrado.")
+        return
+    print("Alunos cadastrados:")
+    for aluno in alunos:
+        print(f"Nome: {aluno['nome']}, Email: {aluno['email']}, Curso: {aluno['curso']}")
+
+def buscar_aluno(nome_busca):
+    """Busca um aluno pelo nome."""
+    alunos = carregar_alunos()
+    for aluno in alunos:
+        if aluno["nome"].lower() == nome_busca.lower():
+            print(f"Aluno encontrado: Nome: {aluno['nome']}, Email: {aluno['email']}, Curso: {aluno['curso']}")
+            return
+    print("Aluno não encontrado.")
+
+def main():
+    """Função principal que executa o menu do sistema."""
+    while True:
+        print("\nMenu:")
+        print("1. Cadastrar um novo aluno")
+        print("2. Listar alunos cadastrados")
+        print("3. Buscar um aluno pelo nome")
+        print("4. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            cadastrar_aluno()
+        elif opcao == "2":
+            listar_alunos()
+        elif opcao == "3":
+            nome = input("Digite o nome do aluno a buscar: ")
+            buscar_aluno(nome)
+        elif opcao == "4":
+            print("Saindo do sistema.")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+

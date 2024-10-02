@@ -1,0 +1,42 @@
+import sqlite3 as conector  # apelido
+
+# função para alterar estrutura da tabela
+def alterar_tabela():
+    print('Abrindo uma conexão de BD')
+    
+    try:
+        conexao = conector.connect('academia.db')
+        cursor = conexao.cursor()
+
+        # Verifica se a tabela 'cadastro' existe
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cadastro';")
+        if not cursor.fetchone():
+            print("A tabela 'cadastro' não existe.")
+            return
+
+        # execução de comandos SQL
+        sql = "ALTER TABLE cadastro ADD COLUMN REAL;"  # Adicionando 'COLUMN'
+        cursor.execute(sql)
+
+        # atualiza os registros com o campo adicionado
+        sql = "UPDATE cadastro SET limite = 1000;"
+        cursor.execute(sql)
+
+        # efetivação do comando
+        conexao.commit()
+        print("Tabela atualizada com sucesso.")
+
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+    
+    finally:
+        # fechamento das conexões
+        cursor.close()
+        conexao.close()
+        print("Conexão encerrada.")
+
+    print("Fim do programa")
+
+# executar função
+alterar_tabela()
+
