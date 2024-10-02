@@ -38,7 +38,7 @@ def inserir_livro(titulo, autor, ano):
 # Executar funções
 criar_tabela_livros()
 inserir_livro('O Senhor dos Anéis', 'J.R.R. Tolkien', 1954)
-inserir_livro('1984', 'George Orwell', 1949)
+inserir_livro('A arca de Noé', 'Vinicius de Morais', 2004)
 
 # Encerrando
 print("Fim do programa")
