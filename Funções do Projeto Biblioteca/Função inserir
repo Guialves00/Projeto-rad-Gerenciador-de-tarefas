@@ -1,1 +1,44 @@
+import sqlite3 as conector
 
+def criar_tabela_livros():
+    try:
+        conexao = conector.connect('biblioteca.db')
+        cursor = conexao.cursor()
+        sql = '''CREATE TABLE IF NOT EXISTS Livros (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            titulo TEXT NOT NULL,
+            autor TEXT NOT NULL,
+            ano INTEGER NOT NULL
+        );'''
+        cursor.execute(sql)
+        conexao.commit()
+        print('Tabela de livros criada com sucesso.')
+    except conector.DatabaseError as err:
+        print('Erro ao criar tabela de livros:', err)
+    finally:
+        if conexao:
+            cursor.close()
+            conexao.close()
+
+def inserir_livro(titulo, autor, ano):
+    try:
+        conexao = conector.connect('biblioteca.db')
+        cursor = conexao.cursor()
+        sql = '''INSERT INTO Livros (titulo, autor, ano) VALUES (?, ?, ?);'''
+        cursor.execute(sql, (titulo, autor, ano))
+        conexao.commit()
+        print('Livro inserido com sucesso.')
+    except conector.DatabaseError as err:
+        print('Erro ao inserir livro:', err)
+    finally:
+        if conexao:
+            cursor.close()
+            conexao.close()
+
+# Executar funções
+criar_tabela_livros()
+inserir_livro('O Senhor dos Anéis', 'J.R.R. Tolkien', 1954)
+inserir_livro('1984', 'George Orwell', 1949)
+
+# Encerrando
+print("Fim do programa")
