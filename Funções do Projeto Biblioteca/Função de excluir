@@ -1,0 +1,25 @@
+def excluir_livro_por_titulo(titulo):
+    try:
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+
+        # Verifica se o livro existe pelo título
+        cursor.execute("SELECT * FROM livros WHERE titulo = ?", (titulo,))
+        livro = cursor.fetchone()
+
+        if livro:
+            cursor.execute("DELETE FROM livros WHERE titulo = ?", (titulo,))
+            conn.commit()
+            print(f"Livro '{titulo}' excluído com sucesso!")
+        else:
+            print(f"Nenhum livro encontrado com o título '{titulo}'.")
+
+    except sqlite3.Error as e:
+        print(f"Erro ao excluir livro: {e}")
+    finally:
+        if conn:
+            conn.close()
+
+# Exemplo de uso:
+titulo = input("Digite o título do livro para excluir: ")
+excluir_livro_por_titulo(titulo)
